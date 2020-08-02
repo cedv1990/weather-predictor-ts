@@ -54,7 +54,7 @@ El proyecto consta de 2 carpetas de aplicación ([functions](https://github.com/
 
 Una vez se clona o descarga el proyecto, se deben seguir los comandos a continuación.
 
-**Prerequisitos:** Tener instalado ***npm***. [Clic aquí para ver cómo](https://www.npmjs.com/get-npm).
+**Prerrequisitos:** Tener instalado ***npm***. [Clic aquí para ver cómo](https://www.npmjs.com/get-npm).
 
 1. Preparación de proyecto [functions](https://github.com/cedv1990/weather-predictor-ts/tree/master/functions).
 
