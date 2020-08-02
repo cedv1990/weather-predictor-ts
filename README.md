@@ -182,6 +182,6 @@ Una vez se clona o descarga el proyecto, se deben seguir los comandos a continua
 
 ## Arquitectura implementada
 
-### </> Hablando de código...
+### Hablando de código... 💻
 
 La arquitectura implementada es **Hexagonal** de la mano de **DDD**, **CQRS** sin olvidar los principios **SOLID**.
