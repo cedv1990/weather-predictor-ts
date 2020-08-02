@@ -62,7 +62,7 @@ Una vez se clona o descarga el proyecto, se deben seguir los comandos a continua
         ~\weather-predictor> cd functions
         ```
 
-    - Instalación de los paquetes:
+    - Instalar dependencias:
 
         ```console
         ~\weather-predictor\functions> npm install
@@ -82,13 +82,13 @@ Una vez se clona o descarga el proyecto, se deben seguir los comandos a continua
         ~\weather-predictor\functions> cd ..\test-server
         ```
 
-    - Instalación de los paquetes:
+    - Instalar dependencias:
 
         ```console
         ~\weather-predictor\test-server> npm install
         ```
 
-    - Crear el servidor express:
+    - Subir el servidor express:
 
         ```console
         ~\weather-predictor\test-server> node app.js
@@ -161,7 +161,7 @@ Una vez se clona o descarga el proyecto, se deben seguir los comandos a continua
 
             [401 Unathorized](https://developer.mozilla.org/es/docs/Web/HTTP/Status/401): El código de respuesta se debe a que la petición fue realizada sin el parámetro ***?dia=n***. Ejemplo: [http://localhost:1234/clima](http://localhost:1234/clima)
 
-            [404 Not Found](https://developer.mozilla.org/es/docs/Web/HTTP/Status/404): El código de respuesta se debe a que la petición fue realizada con un número de día que no se encuentra en la base de datos. Ejemplo: [http://localhost:1234/clima?dia=6000](http://localhost:1234/clima?dia=6000)
+            [404 Not Found](https://developer.mozilla.org/es/docs/Web/HTTP/Status/404): El código de respuesta se debe a que la petición fue realizada con un número de día que no se encuentra en la base de datos o la información aún no se ha cargado con el endpoint anterior. Ejemplo: [http://localhost:1234/clima?dia=6000](http://localhost:1234/clima?dia=6000)
 
             ```javascript
             {
@@ -170,6 +170,11 @@ Una vez se clona o descarga el proyecto, se deben seguir los comandos a continua
             ```
 
             [500 Internal Server Error](https://developer.mozilla.org/es/docs/Web/HTTP/Status/500): Ocurrió un error en la consulta del dato. El cuerpo de respuesta varía dependiendo del error. Se puede deber a conexión con la base de datos u otros procesos que no fueron controlados.
+
+    **NOTA:** Para ver la aplicación en ***Google Cloud Platform***, es necesario cambiar el dominio de los endpoints, así:
+    
+    - [https://us-central1-august-period-284822.cloudfunctions.net/generar-predicciones](https://us-central1-august-period-284822.cloudfunctions.net/generar-predicciones)
+    - [https://us-central1-august-period-284822.cloudfunctions.net/clima?dia=566](https://us-central1-august-period-284822.cloudfunctions.net/clima?dia=566)
 
 ## Arquitectura implementada
 
