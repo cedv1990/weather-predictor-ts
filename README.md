@@ -102,7 +102,7 @@ Una vez se clona o descarga el proyecto, se deben seguir los comandos a continua
         inMemory
         ```
 
-        La palabra **inMemory** significa que el servidor guardará la información que se genere en memoria. Esta configuración se encuentra en el archivo ***[.env](https://github.com/cedv1990/weather-predictor-ts/tree/master/test-server/.env)***, el cual una vez se desplieque ***[functions](https://github.com/cedv1990/weather-predictor-ts/tree/master/functions)*** a ***Google Cloud Platform***, éste no estará configurado y la información se almacenará en ***[Firestore](https://firebase.google.com/docs/firestore?hl=es)***.
+        La palabra **inMemory** significa que el servidor guardará la información que se genere en memoria. Esta configuración se encuentra en el archivo ***[.env](https://github.com/cedv1990/weather-predictor-ts/tree/master/test-server/.env)***, el cual una vez se despliegue ***[functions](https://github.com/cedv1990/weather-predictor-ts/tree/master/functions)*** a ***Google Cloud Platform***, éste no estará configurado y la información se almacenará en ***[Firestore](https://firebase.google.com/docs/firestore?hl=es)***.
 
     Una vez levantado el servidor, éste tendrá 2 endpoints, los cuales estarán utilizando las clases generadas en el proyecto [functions](https://github.com/cedv1990/weather-predictor-ts/tree/master/functions).
 
