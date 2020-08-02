@@ -171,7 +171,7 @@ Una vez se clona o descarga el proyecto, se deben seguir los comandos a continua
 
             [500 Internal Server Error](https://developer.mozilla.org/es/docs/Web/HTTP/Status/500): Ocurrió un error en la consulta del dato. El cuerpo de respuesta varía dependiendo del error. Se puede deber a conexión con la base de datos u otros procesos que no fueron controlados.
 
-    **NOTA:** Para ver la aplicación en ***Google Cloud Platform***, es necesario cambiar el dominio de los endpoints, así:
+    **NOTA:** Para probar los endpoints en ***Google Cloud Platform***, es necesario cambiar el dominio de los endpoints en el navegador, así:
     
     - [https://us-central1-august-period-284822.cloudfunctions.net/generar-predicciones](https://us-central1-august-period-284822.cloudfunctions.net/generar-predicciones)
     - [https://us-central1-august-period-284822.cloudfunctions.net/clima?dia=566](https://us-central1-august-period-284822.cloudfunctions.net/clima?dia=566)
