@@ -110,8 +110,10 @@ Una vez se clona o descarga el proyecto, se deben seguir los comandos a continua
 
     - Generación de los datos.
 
-        - Método: ***GET***
+        - Método HTTP: ***GET***
         - Url: [http://localhost:1234/generar-prediccion](http://localhost:1234/generar-prediccion)
+        - Controlador: [CreateSolarSystemController](https://github.com/cedv1990/weather-predictor-ts/blob/master/functions/src/http/controllers/solarsystem/createsolarsystem.controller.ts)
+        - Método: *generatePredictions*
         - [Códigos de respuesta](https://developer.mozilla.org/es/docs/Web/HTTP/Status):
 
             [201 Created](https://developer.mozilla.org/es/docs/Web/HTTP/Status/201): El sistema solar y los datos del clima de 10 años han sido cargados correctamente.
@@ -146,8 +148,10 @@ Una vez se clona o descarga el proyecto, se deben seguir los comandos a continua
 
     - Consulta de los datos.
 
-        - Método: ***GET***
+        - Método HTTP: ***GET***
         - Url: http://localhost:1234/clima?dia=n
+        - Controlador: [QueryWeatherController](https://github.com/cedv1990/weather-predictor-ts/blob/master/functions/src/http/controllers/weather/querysolarsystem.controller.ts)
+        - Método: *getSpecificDayWeather*
         - [Códigos de respuesta](https://developer.mozilla.org/es/docs/Web/HTTP/Status):
 
             [200 OK](https://developer.mozilla.org/es/docs/Web/HTTP/Status/200): El día solicitado en el [Query String](https://es.wikipedia.org/wiki/Query_string) fue encontrado exitosamente y se envía el estado del clima en el cuerpo. Ejemplo: [http://localhost:1234/clima?dia=566](http://localhost:1234/clima?dia=566)
