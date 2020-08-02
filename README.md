@@ -184,9 +184,9 @@ Una vez se clona o descarga el proyecto, se deben seguir los comandos a continua
 
 ### Hablando de código... 💻
 
-- Arquitectura... la arquitectura implementada es **Hexagonal** de la mano de **DDD**, **CQRS** sin olvidar los principios **SOLID**.
+- **☕ Arquitectura...** se implementó la arquitectura **Hexagonal** de la mano de **DDD**, **CQRS** sin olvidar los principios **SOLID**.
 
-- Lenguaje/tecnología... todo esto fue desarrollado con Typescript y desplegado en servidor Node.js 10.
+- **✍️ Lenguaje/tecnología...** todo esto fue desarrollado con Typescript y desplegado en servidor Node.js 10.
 
 ### Y la base de datos... ¿qué? ⛅
 
