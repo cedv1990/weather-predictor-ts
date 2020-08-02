@@ -1,4 +1,6 @@
-# Descripción del ejercicio
+# Weather Predictor 🌦️
+
+## Descripción del ejercicio 🪐
 
 En una galaxia lejana, existen tres civilizaciones. Vulcanos, Ferengis y Betasoides. Cada civilización vive en paz en su respectivo planeta.
 
@@ -46,7 +48,7 @@ Se debe desarrollar un programa que pueda predecir la siguiente información en 
 
 Para poder utilizar el sistema como un **servicio a las otras civilizaciones**, los ***Vulcanos*** requieren tener una **base de datos** con las condiciones meteorológicas de todos los días y brindar una **API REST** de consulta sobre las condiciones de un **día en particular**.
 
-# ¿Cómo probar la solución de este repositorio?
+## ¿Cómo pruebo la solución de este repositorio? 🤔︎
 
 El proyecto consta de 2 carpetas de aplicación ([functions](https://github.com/cedv1990/weather-predictor-ts/tree/master/functions) y [test-server](https://github.com/cedv1990/weather-predictor-ts/tree/master/test-server)) y una carpeta para los recursos de esta documentación ([assets](https://github.com/cedv1990/weather-predictor-ts/tree/master/assets)).
 
@@ -180,7 +182,7 @@ Una vez se clona o descarga el proyecto, se deben seguir los comandos a continua
     - [https://us-central1-august-period-284822.cloudfunctions.net/generar-predicciones](https://us-central1-august-period-284822.cloudfunctions.net/generar-predicciones)
     - [https://us-central1-august-period-284822.cloudfunctions.net/clima?dia=566](https://us-central1-august-period-284822.cloudfunctions.net/clima?dia=566)
 
-## Arquitectura implementada
+## Arquitectura implementada 🌇
 
 ### Hablando de código... 💻
 
