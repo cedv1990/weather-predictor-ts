@@ -185,3 +185,69 @@ Una vez se clona o descarga el proyecto, se deben seguir los comandos a continua
 ### Hablando de código... 💻
 
 La arquitectura implementada es **Hexagonal** de la mano de **DDD**, **CQRS** sin olvidar los principios **SOLID**.
+
+### Y la base de datos... ¿qué? ⛅
+
+Una vez la carpeta ***dist*** del proyecto [functions](https://github.com/cedv1990/weather-predictor-ts/tree/master/functions) es montada en ***Google Cloud Platform***, la información es almacenada en ***[Firestore](https://firebase.google.com/docs/firestore?hl=es)***.
+
+La gestión del repositorio se realiza en la clase **[FirestoreSolarSystemRepository](https://github.com/cedv1990/weather-predictor-ts/blob/master/functions/src/modules/solarsystem/infraestructure/persistence/firestore/firestoresolarsystem.repository.ts)**.
+
+Esta base de datos es documental y se ve de la siguiente forma:
+
+- Colección *weather-predictions*:
+
+<p align="center">
+    <img alt="1st. collection" src="https://raw.githubusercontent.com/cedv1990/weather-predictor-ts/master/assets/firestore-1.jpg">
+</p>
+
+- Documento *predictions*:
+
+    Los campos son:
+
+    - **daysWithMaxRain**: corresponde a los números de día en los 10 años de predicción los cuales presentan un *pico de intensidad* en la lluvia.
+
+    - **dryDays**: corresponde a la cantidad de días que presentan *sequía* en los 10 años de predicción.
+
+    - **normalDays**: corresponde a la cantidad de días que presentan *normalidad* en los 10 años de predicción.
+
+    - **optimalDays**: corresponde a la cantidad de días que presentan *condiciones óptimas de presión y temperatura* en los 10 años de predicción.
+
+    - **rainyDays**: corresponde a la cantidad de días que presentan *lluvias* (incluyendo los días con pico de intensidad) en los 10 años de predicción.
+
+    - **maxPerimeter**: corresponde al valor del mayor perímetro encontrado a partir del triángulo formado entre los 3 planetas (Vulcano, Ferengi y Betasoide).
+
+<p align="center">
+    <img alt="predictions document" src="https://raw.githubusercontent.com/cedv1990/weather-predictor-ts/master/assets/firestore-2.jpg">
+</p>
+
+- Colección *days*:
+
+    En esta colección se almacenan los documentos correspondientes a todos los días calculados (10 años de predicciones).
+
+<p align="center">
+    <img alt="days collection" src="https://raw.githubusercontent.com/cedv1990/weather-predictor-ts/master/assets/firestore-3.jpg">
+</p>
+
+- Documento *N*:
+
+    Cada documento está identificado con el número de día correspondiente, empezando por el número *0*.
+
+    Los campos de cada documento son (reemplazar *[planeta]* por vulcano, ferengi y betasoide):
+
+    - **[planeta]Clockwise**: define si el planeta realiza su movimiento de traslación con respecto a las manecillas del reloj.
+
+    - **[planeta]Distance**: define la distancia en la que se encuentra el planeta con respecto al sol.
+
+    - **[planeta]PolarG**: corresponde a los grados en los que se encuentra el planeta con respecto al valor inicial 0°. Si el valor es negativo, quiere decir que *[planeta]Clockwise* está en **true**.
+
+    - **[planeta]PolarR**: es el mismo valor de *[planeta]Distance*.
+
+        **Nota:** Las propiedades *[planeta]PolarG* y *[planeta]PolarR* forman la coordenada Polar del planeta en un día específico.
+
+    - **perimeter**: muestra el cálculo del perímetro del triángulo formado por los planetas en ese día (si están alineados, éste valor será 0).
+
+    - **weatherCondition**: muestra la condición climática de ese día.
+
+<p align="center">
+    <img alt="day document" src="https://raw.githubusercontent.com/cedv1990/weather-predictor-ts/master/assets/firestore-4.jpg">
+</p>
