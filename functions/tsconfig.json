@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "skipLibCheck": true,
+    "outDir": "dist",
+    "rootDir": "./src",
+    "sourceMap": false
+  },
+  "include": [
+    "./src/**/*.ts"
+  ]
+}

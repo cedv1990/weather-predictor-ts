@@ -1,0 +1,6 @@
+﻿{
+    "main": "http/app.js",
+    "dependencies": {
+        "firebase-admin": "~7.1.1"
+    }
+}

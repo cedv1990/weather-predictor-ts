@@ -1,0 +1,13 @@
+{
+    "scripts": {
+        "rename": "node -e \"require('fs').rename('dist/package.dev.json', 'dist/package.json', function(err) { if (err) console.log(err); console.log('File successfully renamed!') })\"",
+        "copy": "copyfiles package.dev.json dist",
+        "copy-rename": "npm run copy && npm run rename",
+        "build": "npm run tsc && npm run copy-rename",
+        "test": "tsc -w",
+        "tsc": "tsc"
+    },
+    "dependencies": {
+        "firebase-admin": "~7.1.1"
+    }
+}
