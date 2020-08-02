@@ -232,7 +232,7 @@ Esta base de datos es documental y se ve de la siguiente forma:
 
     Cada documento está identificado con el número de día correspondiente, empezando por el número *0*.
 
-    Los campos de cada documento son (reemplazar *[planeta]* por vulcano, ferengi y betasoide):
+    Los campos de cada documento son (reemplazar *[planeta]* por vulcano, ferengi o betasoide):
 
     - **[planeta]Clockwise**: define si el planeta realiza su movimiento de traslación con respecto a las manecillas del reloj.
 
