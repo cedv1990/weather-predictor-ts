@@ -34,6 +34,7 @@ export class QueryWeatherController extends ApiController implements Responder {
      * @param request Objeto que contiene la solicitud web.
      * @param response Objeto que se usará para el envío de las respuestas.
      * @static
+     * @async
      * @returns {Promise<void>}
      */
     public static async getSpecificDayWeather(request: any, response: any): Promise<void> {
@@ -95,6 +96,7 @@ export class QueryWeatherController extends ApiController implements Responder {
     /**
      * Método que se encarga de obtener el caso de uso, el comando correspondiente y la ejecución del caso de uso.
      * @param {number} day Número de día a consultar.
+     * @async
      * @returns {Promise<Weather>}
      */
     private async getDayWeatherFromSolarSystem(day: number): Promise<Weather> {

@@ -4,14 +4,26 @@
  * Entidad encargada del encapsulamiento de las propiedades de cada estrella.
  */
 export class Star {
+    /**
+     * @property {PolarCoordinate}
+     */
     public polarCoordinate: PolarCoordinate;
 
+    /**
+     * @constructor
+     * @param {string} name @property
+     * @param {number} distance 
+     * @param {number} grades @property
+     * @param {number} velocity @property
+     * @param {boolean} clockwise @property
+     */
     constructor(
         public name: string,
         distance: number = 0,
         public grades: number = 0,
         public velocity?: number,
-        public clockwise?: boolean) {
+        public clockwise?: boolean
+    ) {
         this.polarCoordinate = new PolarCoordinate(distance, this.grades);
     }
 

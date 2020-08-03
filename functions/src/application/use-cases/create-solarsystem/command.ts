@@ -9,7 +9,7 @@ export class Command implements CommandBase {
 
     /**
      * @constructor
-     * @param {number} solarSystemDays Cantidad de días a generar.
+     * @param {number} solarSystemDays @property Cantidad de días a generar.
      */
     constructor(private solarSystemDays: number) {
 
@@ -18,7 +18,6 @@ export class Command implements CommandBase {
     /**
      * Obtiene el número de días que se necesita para generar la predicción.
      * @returns {number}
-     * @method
      */
     public get(): number {
         return this.solarSystemDays;

@@ -13,7 +13,7 @@ export class UseCase implements UseCaseBase {
     
     /**
      * @constructor
-     * @param {SolarSystemRepository} solarsystemRepository Instancia que implementa la interfaz que 
+     * @param {SolarSystemRepository} solarsystemRepository @property Instancia que implementa la interfaz que 
      * contiene las funcionalidades del gestor de la persistencia de los datos.
      */
     constructor(private solarsystemRepository: SolarSystemRepository) {
@@ -26,9 +26,10 @@ export class UseCase implements UseCaseBase {
      * @param {Command} command Instancia que implementa la interfaz que contiene los comandos necesarios.
      * @param {Responder} responder Instancia que implementa la interfaz que contiene los métodos de respuesta.
      * Dicha instancia es del controlador {@link CreateSolarSystemController}.
+     * @async
      * @returns {Promise<void>}
      */
-    async execute(command: Command, responder: Responder): Promise<void> {
+    public async execute(command: Command, responder: Responder): Promise<void> {
         try {
             /**
              * Se crea la instancia de {@link SolarSystem} mediante el llamado de {@link SolarSystemFactory}.

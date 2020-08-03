@@ -1,5 +1,9 @@
 ﻿const express = require('express');
 const app = express();
+
+/**
+ * Se cargan variables de entorno del archivo @see .env
+ */
 require('dotenv').config();
 
 const api = require('../functions/dist/http/app');

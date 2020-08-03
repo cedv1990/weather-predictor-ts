@@ -9,7 +9,7 @@ export class Command implements CommandBase {
 
     /**
      * @constructor
-     * @param {number} day Número de día para realizar la consulta del clima.
+     * @param {number} day @property Número de día para realizar la consulta del clima.
      */
     constructor(private day: number) {
 
@@ -18,7 +18,6 @@ export class Command implements CommandBase {
     /**
      * Obtiene el número de día que se necesita para consultar el clima en ese momento.
      * @returns {number}
-     * @method
      */
     public get(): number {
         return this.day;

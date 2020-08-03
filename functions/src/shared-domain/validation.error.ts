@@ -1,4 +1,9 @@
-﻿export interface ValidationError {
+﻿/**
+ * Interfaces que encapsulan errores.
+ * @interface
+ */
+
+export interface ValidationError {
     message: string;
 }
 

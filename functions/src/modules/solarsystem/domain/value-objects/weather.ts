@@ -2,14 +2,16 @@
 import { WeatherCondition } from "./weathercondition.enum";
 import { CartesianCoordinate } from "../../../../shared-domain/coordinates";
 import { Utils } from "../../../../shared-domain/utils";
-import { ReturnFunction } from "../../../../shared-domain/returnfunction";
 
 /**
- * Clase encargada para el encapsulamiento de los datos correspondientes a un día específico en la predicción.
+ * Clase encargada del encapsulamiento de los datos correspondientes a un día específico en la predicción.
+ * @class
  */
 export class Weather {
+
     /**
      * Planetas del ejercicio.
+     * @property {Star}
      */
     public betasoide: Star;
     public vulcano: Star;
@@ -18,14 +20,21 @@ export class Weather {
     /**
      * Se parte del supuesto de que los planetas están alineados, por lo que esta propiedad cambia su valor
      * si los planetas no están alineados.
+     * @property {number}
      */
     public perimeter: number = 0;
 
     /**
      * Se parte del supuesto de que el día tiene condiciones climáticas normales.
+     * @property {WeatherCondition}
      */
     public weatherCondition: WeatherCondition = WeatherCondition.normal;
 
+    /**
+     * @constructor
+     * @param {Star} sun @property
+     * @param {number} day @property
+     */
     constructor(private sun: Star, public day: number) {
         this.initializeStars();
         this.setPositionByDayNumber();
