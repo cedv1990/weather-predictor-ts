@@ -27,13 +27,13 @@ export class SolarSystem {
     }
 
     private setPeaks() {
-        this.daysWithMaxRain.forEach(day => this.days[day].weatherCondition = WeatherCondition.picoLluvia);
+        this.daysWithMaxRain.forEach(day => this.days[day].weatherCondition = WeatherCondition.rainPeak);
     }
 
     private calculateMaxPerimeterDryOptimalRainyHighintensityDays() {
-        const rainyDays = this.filterByWeatherCondition(WeatherCondition.lluvia);
-        const dryDays = this.filterByWeatherCondition(WeatherCondition.sequia);
-        const optimalDays = this.filterByWeatherCondition(WeatherCondition.optima);
+        const rainyDays = this.filterByWeatherCondition(WeatherCondition.rain);
+        const dryDays = this.filterByWeatherCondition(WeatherCondition.dry);
+        const optimalDays = this.filterByWeatherCondition(WeatherCondition.optimal);
 
         this.maxPerimeter = Math.max.apply(null, rainyDays.map(x => x.perimeter));
 

@@ -2,8 +2,6 @@
 import { SolarSystem } from '../../../domain/solarsystem';
 import { AlreadyExistsError, NotExistsError } from '../../../../../shared-domain/validation.error';
 import { Weather } from '../../../domain/value-objects/weather';
-import { Star } from '../../../domain/value-objects/star';
-import { PolarCoordinate } from '../../../domain/value-objects/coordinate/polar.coordinate';
 
 const admin = require('firebase-admin');
 admin.initializeApp();
@@ -49,17 +47,14 @@ export class FirestoreSolarSystemRepository implements SolarSystemRepository {
 
             batch.set(document, {
                 ferengiVelocity: ferengi.velocity,
-                ferengiDistance: ferengi.distance,
                 ferengiClockwise: ferengi.clockwise,
                 ferengiPolarR: ferengi.polarCoordinate.radius,
                 ferengiPolarG: ferengi.polarCoordinate.grades,
                 betasoideVelocity: betasoide.velocity,
-                betasoideDistance: betasoide.distance,
                 betasoideClockwise: betasoide.clockwise,
                 betasoidePolarR: betasoide.polarCoordinate.radius,
                 betasoidePolarG: betasoide.polarCoordinate.grades,
                 vulcanoVelocity: vulcano.velocity,
-                vulcanoDistance: vulcano.distance,
                 vulcanoClockwise: vulcano.clockwise,
                 vulcanoPolarR: vulcano.polarCoordinate.radius,
                 vulcanoPolarG: vulcano.polarCoordinate.grades,

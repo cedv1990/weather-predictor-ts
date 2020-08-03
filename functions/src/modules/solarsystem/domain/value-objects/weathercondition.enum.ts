@@ -1,7 +1,7 @@
 ﻿export enum WeatherCondition {
-    lluvia = 'lluvia',
+    rain = 'lluvia',
     normal = 'normal',
-    sequia = 'sequia',
-    picoLluvia = 'pico',
-    optima = 'optima'
+    dry = 'sequia',
+    rainPeak = 'pico',
+    optimal = 'optima'
 }

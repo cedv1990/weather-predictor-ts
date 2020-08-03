@@ -1,5 +1,5 @@
-﻿import { PolarCoordinate } from "../modules/solarsystem/domain/value-objects/coordinate/polar.coordinate";
-import { CartesianCoordinate } from "../modules/solarsystem/domain/value-objects/coordinate/cartesian.coordinate";
+﻿import { PolarCoordinate, CartesianCoordinate } from './coordinates';
+import { ReturnFunction } from './returnfunction';
 
 export class Utils {
     public static getDaysFromNumberOfYears(years: number): number {
@@ -19,6 +19,24 @@ export class Utils {
         return new CartesianCoordinate(x, y);
     }
 
+    /**
+     * Método que devuelve la función que calcula la pendiente formada entre dos puntos, a partir de sus
+     * coordenadas cartesianas.
+     * @param {CartesianCoordinate} from Coordenadas cartesianas pertenecientes al punto inicial.
+     */
+    public static generateFunctionToCalculateSlope(from: CartesianCoordinate): ReturnFunction<CartesianCoordinate, number> {
+        return (to: CartesianCoordinate): number => {
+            const   x1 = from.x,
+                    y1 = from.y,
+                    x2 = to.x,
+                    y2 = to.y;
+
+            const m = Utils.getSlope(x1, y1, x2, y2);
+
+            return Utils.round(m, 10);
+        };
+    }
+
     public static getSlope(x1: number, y1: number, x2: number, y2: number): number {
         return (y2 - y1) / (x2 - x1);
     }
@@ -31,7 +49,7 @@ export class Utils {
         return Math.sqrt(Math.pow(to.x - from.x, 2) + Math.pow(to.y - from.y, 2));
     }
 
-    public static evaluateIfPointIsInsideOfTriangle(a: CartesianCoordinate, b: CartesianCoordinate, c: CartesianCoordinate, p: CartesianCoordinate): boolean {
+    public static evaluateIfPointIsInsideTheTriangle(a: CartesianCoordinate, b: CartesianCoordinate, c: CartesianCoordinate, p: CartesianCoordinate): boolean {
         const d = new CartesianCoordinate( b.x - a.x, b.y - a.y );
 
         const e = new CartesianCoordinate( c.x - a.x, c.y - a.y );

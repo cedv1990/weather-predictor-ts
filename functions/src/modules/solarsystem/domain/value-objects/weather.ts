@@ -1,89 +1,154 @@
 ﻿import { Star } from "./star";
 import { WeatherCondition } from "./weathercondition.enum";
-import { CartesianCoordinate } from "./coordinate/cartesian.coordinate";
+import { CartesianCoordinate } from "../../../../shared-domain/coordinates";
 import { Utils } from "../../../../shared-domain/utils";
 import { ReturnFunction } from "../../../../shared-domain/returnfunction";
 
+/**
+ * Clase encargada para el encapsulamiento de los datos correspondientes a un día específico en la predicción.
+ */
 export class Weather {
     public ferengi: Star;
     public betasoide: Star;
     public vulcano: Star;
-    public weatherCondition: WeatherCondition = WeatherCondition.normal;
+
+    /**
+     * Se parte del supuesto de que los planetas están alineados, por lo que esta propiedad cambia su valor
+     * si los planetas no están alineados.
+     */
     public perimeter: number = 0;
+
+    /**
+     * Se parte del supuesto de que el día tiene condiciones climáticas normales.
+     */
+    public weatherCondition: WeatherCondition = WeatherCondition.normal;
 
     constructor(private sun: Star, public day: number) {
         this.initializeStars();
-        this.setPosition();
+        this.setPositionByDayNumber();
     }
 
-    private initializeStars() {
-        this.ferengi = new Star('Ferengi', 500, 0, 1, true);
-        this.betasoide = new Star('Betasoide', 2000, 0, 3, true);
-        this.vulcano = new Star('Vulcano', 1000, 0, 5, false);
+    /**
+     * Método para inicializar los planetas con su respectiva configuración.
+     */
+    private initializeStars(): void {
+        /**
+         * Se instancian los planetas con:
+         * Nombre
+         * Distancia al sol
+         * Grados
+         * Velocidad (grados por día)
+         * Movimiento con respecto a las manecillas del reloj
+         */
+        this.ferengi    = new Star('Ferengi', 500, 0, 1, true);
+        this.betasoide  = new Star('Betasoide', 2000, 0, 3, true);
+        this.vulcano    = new Star('Vulcano', 1000, 0, 5, false);
     }
 
-    private setPosition() {
-        this.ferengi.nextPosition(this.day);
-        this.betasoide.nextPosition(this.day);
-        this.vulcano.nextPosition(this.day);
+    /**
+     * Método para asignar las posiciones correspondientes de los planetas dependiendo del número de día.
+     */
+    private setPositionByDayNumber(): void {
+        /**
+         * Llamado al método que realiza el cálculo de la posición del planeta con respecto al número de día.
+         */
+        this.ferengi.setPositionByDayNumber(this.day);
+        this.betasoide.setPositionByDayNumber(this.day);
+        this.vulcano.setPositionByDayNumber(this.day);
+
+        /**
+         * Llamado al cálculo de la condición climática del día dependiendo de la posición de los planetas.
+         */
         this.setWeatherCondition();
     }
 
-    private extractCartesianCoordinate(star: Star) {
+    /**
+     * Método para calcular la coordenada cartesiana a partir de la coordenada polar.
+     * @param {Star} star Estrella a la cual se le calculará la coordenada cartesiana.
+     * @returns {CartesianCoordinate}
+     */
+    private calculateCartesianCoordinateFromStar(star: Star): CartesianCoordinate {
+        /**
+         * Llamado del método de cálculo presente en la clase {@link Utils}.
+         */
         return Utils.getCartesianCoordinateFromPolarCoordinate(star.polarCoordinate);
     }
 
-    private setWeatherCondition() {
-        const betasoideCoordinate = this.extractCartesianCoordinate(this.betasoide);
-        const ferengiCoordinate = this.extractCartesianCoordinate(this.ferengi);
-        const vulcanoCoordinate = this.extractCartesianCoordinate(this.vulcano);
-        const sunCoordinate = this.extractCartesianCoordinate(this.sun);
+    /**
+     * Método encargado de asignar la condición climática del día.
+     */
+    private setWeatherCondition(): void {
+        /**
+         * Se obtienen las coordenadas cartesianas de cada planeta a partir de sus coordenadas polares.
+         */
+        const betasoideCartesianCoordinate   = this.calculateCartesianCoordinateFromStar(this.betasoide);
+        const ferengiCartesianCoordinate     = this.calculateCartesianCoordinateFromStar(this.ferengi);
+        const vulcanoCartesianCoordinate     = this.calculateCartesianCoordinateFromStar(this.vulcano);
+        const sunCartesianCoordinate         = this.calculateCartesianCoordinateFromStar(this.sun);
 
-        const functionToCalculateSlope = this.generateFunctionToCalculateSlope(betasoideCoordinate);
+        /**
+         * Se realiza el llamado del método que devuelve la función que calcula la pendiente de la recta
+         * formada a partir del planeta más lejano (Betasoide).
+         */
+        const functionToCalculateSlope = Utils.generateFunctionToCalculateSlope(betasoideCartesianCoordinate);
 
-        const betasoideFerengi  = functionToCalculateSlope(ferengiCoordinate);
-        const betasoideVulcano  = functionToCalculateSlope(vulcanoCoordinate);
-        const betasoideSun      = functionToCalculateSlope(sunCoordinate);
+        /**
+         * Se calculan las pendientes de las 3 rectas formadas a partir del planeta más lejano (Betasoide).
+         */
+        const slopeBetasoideFerengi  = functionToCalculateSlope(ferengiCartesianCoordinate);
+        const slopeBetasoideVulcano  = functionToCalculateSlope(vulcanoCartesianCoordinate);
+        const slopeBetasoideSun      = functionToCalculateSlope(sunCartesianCoordinate);
 
-        if (betasoideFerengi === betasoideVulcano) {
-            if (betasoideFerengi === betasoideSun) {
-                this.weatherCondition = WeatherCondition.sequia;
+        /**
+         * Se comparan las pendientes entre betasoide-ferengi y betasoide-vulcano.
+         * Si son iguales, quiere decir que los 3 planetas están alineados.
+         */
+        if (slopeBetasoideFerengi === slopeBetasoideVulcano) {
+            /**
+             * Se compara la pendiente de cualquier recta formada entre los planetas con la pendiente
+             * formada entre el planeta más lejano (Betasoide) y el Sol.
+             * Si son iguales, quiere decir que los 3 planetas están alineados con el sol, lo cual
+             * significa que habrá sequía.
+             * Si son diferentes, quiere decir que los 3 planetas están alineados pero no con el sol, lo
+             * cual significa que habrán condiciones óptimas de presión y temperatura.
+             */
+            if (slopeBetasoideFerengi === slopeBetasoideSun) {
+                this.weatherCondition = WeatherCondition.dry;
             }
             else {
-                this.weatherCondition = WeatherCondition.optima;
+                this.weatherCondition = WeatherCondition.optimal;
             }
         }
         else {
-            const distanceBetasoideFerengi = this.calculateDistanceBetweenPoints(betasoideCoordinate, ferengiCoordinate);
-            const distanceBetasoideVulcano = this.calculateDistanceBetweenPoints(betasoideCoordinate, vulcanoCoordinate);
-            const distanceVulcanoFerengi = this.calculateDistanceBetweenPoints(vulcanoCoordinate, ferengiCoordinate);
+            /**
+             * Al no estár alineados, los planetas forman un triángulo.
+             * Para calcular el perímetro de cualquier triángulo, se requiere conocer la longitud de sus lados,
+             * para así sumarlos y hallar el valor.
+             */
 
+            /**
+             * Se calculan las distancias entre los 3 planetas.
+             */
+            const distanceBetasoideFerengi  = Utils.getDistanceBetweenPoints(betasoideCartesianCoordinate, ferengiCartesianCoordinate);
+            const distanceBetasoideVulcano  = Utils.getDistanceBetweenPoints(betasoideCartesianCoordinate, vulcanoCartesianCoordinate);
+            const distanceVulcanoFerengi    = Utils.getDistanceBetweenPoints(vulcanoCartesianCoordinate, ferengiCartesianCoordinate);
+
+            /**
+             * Se calcula el perímetro del triángulo, mediante la suma de sus lados.
+             * Posteriormente, se revisará en la clase {@link SolarSystem} el perímetro más alto,
+             * lo cual servirá para detectar los días con picos altos de lluvia; éstos corresponden
+             * a aquellos días que compartan ese valor del perímetro mayor.
+             */
             this.perimeter = distanceBetasoideFerengi + distanceBetasoideVulcano + distanceVulcanoFerengi;
 
-            if (this.evaluateIfSunIsInside(betasoideCoordinate, ferengiCoordinate, vulcanoCoordinate, sunCoordinate)) {
-                this.weatherCondition = WeatherCondition.lluvia;
+            /**
+             * Se realiza el llamado al método encargado de revisar si el sol se encuentra dentro del triángulo
+             * formado entre los 3 planetas.
+             * Si lo está, quiere decir que la condición del clima será de lluvia.
+             */
+            if (Utils.evaluateIfPointIsInsideTheTriangle(betasoideCartesianCoordinate, ferengiCartesianCoordinate, vulcanoCartesianCoordinate, sunCartesianCoordinate)) {
+                this.weatherCondition = WeatherCondition.rain;
             }
         }
-    }
-
-    private generateFunctionToCalculateSlope(from: CartesianCoordinate): ReturnFunction<CartesianCoordinate, number> {
-        return (to: CartesianCoordinate): number => {
-            const   x1 = from.x,
-                    y1 = from.y,
-                    x2 = to.x,
-                    y2 = to.y;
-
-            const m = Utils.getSlope(x1, y1, x2, y2);
-
-            return Utils.round(m, 10);
-        };
-    }
-
-    private calculateDistanceBetweenPoints(from: CartesianCoordinate, to: CartesianCoordinate): number {
-        return Utils.getDistanceBetweenPoints(from, to);
-    }
-
-    private evaluateIfSunIsInside(betasoidePoint: CartesianCoordinate, ferengiPoint: CartesianCoordinate, vulcanoPoint: CartesianCoordinate, sunPoint: CartesianCoordinate): boolean {
-        return Utils.evaluateIfPointIsInsideOfTriangle(betasoidePoint, ferengiPoint, vulcanoPoint, sunPoint);
     }
 }
