@@ -198,13 +198,13 @@ La gestión del repositorio se realiza en la clase **[FirestoreSolarSystemReposi
 
 Esta base de datos es documental y se ve de la siguiente forma:
 
-- Colección *weather-predictions*:
+- Colección ***weather-predictions***:
 
 <p align="center">
     <img alt="1st. collection" src="https://raw.githubusercontent.com/cedv1990/weather-predictor-ts/master/assets/firestore-1.jpg">
 </p>
 
-- Documento *predictions*:
+- Documento ***predictions***:
 
     Los campos son:
 
@@ -224,7 +224,7 @@ Esta base de datos es documental y se ve de la siguiente forma:
     <img alt="predictions document" src="https://raw.githubusercontent.com/cedv1990/weather-predictor-ts/master/assets/firestore-2.jpg">
 </p>
 
-- Colección *days*:
+- Colección ***days***:
 
     En esta colección se almacenan los documentos correspondientes a todos los días calculados (10 años de predicciones).
 
@@ -232,7 +232,7 @@ Esta base de datos es documental y se ve de la siguiente forma:
     <img alt="days collection" src="https://raw.githubusercontent.com/cedv1990/weather-predictor-ts/master/assets/firestore-3.jpg">
 </p>
 
-- Documento *N*:
+- Documento ***N***:
 
     Cada documento está identificado con el número de día correspondiente, empezando por el número *0*.
 
