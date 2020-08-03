@@ -240,17 +240,15 @@ Esta base de datos es documental y se ve de la siguiente forma:
 
     - **[planeta]Clockwise**: define si el planeta realiza su movimiento de traslación con respecto a las manecillas del reloj.
 
-    - **[planeta]Distance**: define la distancia en la que se encuentra el planeta con respecto al sol.
-
     - **[planeta]PolarG**: corresponde a los grados en los que se encuentra el planeta con respecto al valor inicial 0°. Si el valor es negativo, quiere decir que *[planeta]Clockwise* está en **true**.
 
-    - **[planeta]PolarR**: es el mismo valor de *[planeta]Distance*.
+    - **[planeta]PolarR**: define la distancia en la que se encuentra el planeta con respecto al sol.
 
         **Nota:** Las propiedades *[planeta]PolarG* y *[planeta]PolarR* forman la coordenada Polar del planeta en un día específico.
 
-    - **perimeter**: muestra el cálculo del perímetro del triángulo formado por los planetas en ese día (si están alineados, éste valor será 0).
+    - **perimeter**: corresponde al valor del cálculo del perímetro del triángulo formado por los planetas en ese día (si están alineados, éste valor será 0).
 
-    - **weatherCondition**: muestra la condición climática de ese día.
+    - **weatherCondition**: corresponde a la condición climática de ese día.
 
 <p align="center">
     <img alt="day document" src="https://raw.githubusercontent.com/cedv1990/weather-predictor-ts/master/assets/firestore-4.jpg">
