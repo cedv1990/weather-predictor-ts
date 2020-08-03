@@ -8,9 +8,12 @@ import { ReturnFunction } from "../../../../shared-domain/returnfunction";
  * Clase encargada para el encapsulamiento de los datos correspondientes a un día específico en la predicción.
  */
 export class Weather {
-    public ferengi: Star;
+    /**
+     * Planetas del ejercicio.
+     */
     public betasoide: Star;
     public vulcano: Star;
+    public ferengi: Star;
 
     /**
      * Se parte del supuesto de que los planetas están alineados, por lo que esta propiedad cambia su valor
@@ -40,9 +43,9 @@ export class Weather {
          * Velocidad (grados por día)
          * Movimiento con respecto a las manecillas del reloj
          */
-        this.ferengi    = new Star('Ferengi', 500, 0, 1, true);
         this.betasoide  = new Star('Betasoide', 2000, 0, 3, true);
         this.vulcano    = new Star('Vulcano', 1000, 0, 5, false);
+        this.ferengi    = new Star('Ferengi', 500, 0, 1, true);
     }
 
     /**
@@ -52,9 +55,9 @@ export class Weather {
         /**
          * Llamado al método que realiza el cálculo de la posición del planeta con respecto al número de día.
          */
-        this.ferengi.setPositionByDayNumber(this.day);
         this.betasoide.setPositionByDayNumber(this.day);
         this.vulcano.setPositionByDayNumber(this.day);
+        this.ferengi.setPositionByDayNumber(this.day);
 
         /**
          * Llamado al cálculo de la condición climática del día dependiendo de la posición de los planetas.
@@ -82,8 +85,8 @@ export class Weather {
          * Se obtienen las coordenadas cartesianas de cada planeta a partir de sus coordenadas polares.
          */
         const betasoideCartesianCoordinate   = this.calculateCartesianCoordinateFromStar(this.betasoide);
-        const ferengiCartesianCoordinate     = this.calculateCartesianCoordinateFromStar(this.ferengi);
         const vulcanoCartesianCoordinate     = this.calculateCartesianCoordinateFromStar(this.vulcano);
+        const ferengiCartesianCoordinate     = this.calculateCartesianCoordinateFromStar(this.ferengi);
         const sunCartesianCoordinate         = this.calculateCartesianCoordinateFromStar(this.sun);
 
         /**
