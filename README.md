@@ -110,7 +110,7 @@ Una vez se clona o descarga el proyecto, se deben seguir los comandos a continua
 
 3. La aplicación que se encuentra en ejecución en [http://localhost:1234/](http://localhost:1234/) contiene los siguientes *endpoints*:
 
-    - Generación de los datos.
+    - Generación de los datos. *Es importante ejecutar este endpoint para generar y almacenar todas las predicciones.*
 
         - Método HTTP: ***GET***
         - Url: [http://localhost:1234/generar-prediccion](http://localhost:1234/generar-prediccion)
